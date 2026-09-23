@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+
+  --color-canvas: #fbf8fa;
+  --color-ink: #1c1022;
+  --color-ink-soft: #4b3b55;
+  --color-muted: #87778f;
+  --color-line: #ece4ef;
+
+  --color-plum-50: #f8f3fb;
+  --color-plum-100: #f0e6f6;
+  --color-plum-200: #e0cced;
+  --color-plum-300: #c8a6de;
+  --color-plum-400: #a979c8;
+  --color-plum-500: #8c52ae;
+  --color-plum-600: #743b94;
+  --color-plum-700: #5d2d79;
+  --color-plum-800: #45215b;
+  --color-plum-900: #2f1641;
+  --color-plum-950: #1d0c2a;
+
+  --color-blush-50: #fff2f7;
+  --color-blush-100: #ffe3ee;
+  --color-blush-200: #ffc5da;
+  --color-blush-300: #ff9abe;
+  --color-blush-400: #f76d9f;
+  --color-blush-500: #e8467f;
+  --color-blush-600: #cf2d68;
+  --color-blush-700: #ac2054;
+  --color-blush-800: #8a1c46;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--color-blush-200);
+    color: var(--color-plum-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-plum-400);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    box-shadow:
+      0 1px 2px rgb(28 16 34 / 0.04),
+      0 18px 40px -26px rgb(28 16 34 / 0.2);
+  }
+  .field {
+    width: 100%;
+    border-radius: 0.8rem;
+    border: 1px solid var(--color-line);
+    background: #fff;
+    padding: 0.7rem 0.9rem;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--color-ink);
+    outline: none;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+  }
+  .field::placeholder {
+    color: color-mix(in oklab, var(--color-muted) 70%, transparent);
+  }
+  .field:focus {
+    border-color: var(--color-plum-400);
+    box-shadow: 0 0 0 4px var(--color-plum-100);
+  }
+  select.field {
+    appearance: none;
+    padding-right: 2.4rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2387778f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+  }
+  .label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+  }
+  .hint {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+  .bg-sis {
+    background-image: linear-gradient(135deg, var(--color-plum-700) 0%, var(--color-blush-500) 100%);
+  }
+  .text-sis {
+    background-image: linear-gradient(120deg, var(--color-plum-600) 10%, var(--color-blush-500) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .prose-sis h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin-top: 3rem;
+    margin-bottom: 0.9rem;
+  }
+  .prose-sis h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-top: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+  .prose-sis p,
+  .prose-sis li {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--color-ink-soft);
+  }
+  .prose-sis p + p {
+    margin-top: 0.9rem;
+  }
+  .prose-sis ul {
+    margin-top: 0.6rem;
+    list-style: none;
+    padding: 0;
+  }
+  .prose-sis ul li {
+    position: relative;
+    padding-left: 1.3rem;
+    margin-top: 0.45rem;
+  }
+  .prose-sis ul li::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 0.72em;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: var(--color-blush-400);
+  }
+  .prose-sis a {
+    color: var(--color-plum-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-sis strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+}
